@@ -1,4 +1,6 @@
 .venv
 config.py
-files
+files/loma_trades.json
+files/loma_alerts.json
+files/loma_sl.json
 .idea
