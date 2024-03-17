@@ -49,6 +49,8 @@ def check_positions(trader: str) -> None:
     if not saved_sl:
         return
     for user in config.users.values():
+        if not user['autotrade']:
+            continue
         gateio = Gateio(user['gateio_key'], user['gateio_secret'])
         positions = gateio.get_positions()
         for position in positions:
