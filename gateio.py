@@ -45,6 +45,11 @@ class Gateio(object):
         positions = self.req('GET', '/futures/usdt/positions', {}, param)
         return positions
 
+    def get_positions_history(self, from_t=0) -> list:
+        param = ''
+        positions = self.req('GET', '/futures/usdt/position_close', {}, param)
+        return positions
+
     def get_bars(self, pair: str, interval: str) -> list:
         param = f'contract={pair}_USDT&interval={interval}&limit=3'
         bars = self.req('GET', f'/futures/usdt/candlesticks?{param}', {}, param)
