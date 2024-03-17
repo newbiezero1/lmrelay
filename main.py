@@ -19,6 +19,13 @@ def check_trades(trader: str) -> None:
             notifyer.send_message(new_message['content'])
             with open(config.last_tweet_file, 'w') as f:
                 f.write(json.dumps({'tweet_id': 1, 'time': int(time.time())}))
+            loma = Loma()
+            entries = loma.get_entry_levels(new_message['content'])
+            if entries:
+                message = '''Entry Levels:\n'''
+                for entry in entries:
+                    message += f'L: {entry}\n'
+                notifyer.send_message(message)
 
 
 def check_sl_alert(trader: str) -> None:
