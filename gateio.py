@@ -35,9 +35,7 @@ class Gateio(object):
         #sign_headers.update(self.common_headers)
         headers= self.common_headers.copy()
         headers.update(sign_headers)
-        print('signature headers: %s' % headers)
         res = requests.request(method, self.host + self.prefix + url, headers=headers, data=data)
-        print(res.json())
         return res.json()
 
     def get_positions(self) -> list:
