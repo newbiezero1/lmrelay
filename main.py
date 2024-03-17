@@ -54,6 +54,8 @@ def check_positions(trader: str) -> None:
         gateio = Gateio(user['gateio_key'], user['gateio_secret'])
         positions = gateio.get_positions()
         for position in positions:
+            if position['size'] == 0:
+                continue
             for sl in saved_sl:
                 if sl['pair']+'_USDT' == position['contract']:
                     check_sl_true(sl, gateio)
