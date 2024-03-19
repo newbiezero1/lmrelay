@@ -3,4 +3,5 @@ config.py
 files/loma_trades.json
 files/loma_alerts.json
 files/loma_sl.json
+files/guru_trades.json
 .idea

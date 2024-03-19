@@ -16,6 +16,7 @@ def check_trades(trader: str) -> None:
     if new_message['content']:
         for user in config.users.values():
             notifyer = Notifyer(user["tg_chat_id"])
+            notifyer.send_message(f'*{trader} NEW MESSAGE:*', markdown=True)
             notifyer.send_message(new_message['content'])
             with open(config.last_tweet_file, 'w') as f:
                 f.write(json.dumps({'tweet_id': 1, 'time': int(time.time())}))
@@ -73,3 +74,5 @@ client = DiscordClient(config.discord_token)
 check_trades('loma')
 check_sl_alert('loma')
 check_positions('loma')
+
+check_trades('guru')
