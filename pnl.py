@@ -15,9 +15,10 @@ for user in config.users.values():
     history = gateio.get_positions_history(unixtime_start_of_month)
     history_table_data = []
     for position in history:
-        history_table_data.append([position['contract'],position['long_price'], position['short_price'], position['pnl']])
+        dt = datetime.fromtimestamp(position['time'])
+        history_table_data.append([position['contract'],position['long_price'], position['short_price'], dt, position['pnl']])
         sum_pnl += float(position['pnl'])
 
 history_table_data.reverse()
-print(tabulate(history_table_data, headers=['PAIR', 'OPEN', 'CLOSE', 'PNL'], tablefmt='orgtbl'))
+print(tabulate(history_table_data, headers=['PAIR', 'OPEN', 'CLOSE', 'DATE', 'PNL'], tablefmt='orgtbl'))
 print(f'Total PNL: {sum_pnl}')
